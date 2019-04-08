@@ -5,6 +5,7 @@
 #include <X11/extensions/Xrandr.h>
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 
 
@@ -32,6 +33,19 @@ static const struct { float r; float g; float b; } whitepoints[] = {
 	{ 0.77442176,  0.85453121,  1.00000000, },
 };
 
+void saveTemp(int temp) {
+  char filePath[100] = "";
+  sprintf(filePath, "%s%s", getenv("HOME"), "/.sct-temp");
+
+  char strTemp[10];
+  sprintf(strTemp, "%d", temp);
+
+  FILE * file = fopen(filePath, "w+");
+  fputs(strTemp, file);
+  fclose(file);
+}
+
+
 int
 main(int argc, char **argv)
 {
@@ -46,6 +60,8 @@ main(int argc, char **argv)
 		temp = atoi(argv[1]);
 	if (temp < 1000 || temp > 10000)
 		temp = 6500;
+
+  saveTemp(temp);
 
 	temp -= 1000;
 	double ratio = temp % 500 / 500.0;
