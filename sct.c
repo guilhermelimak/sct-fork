@@ -35,7 +35,7 @@ static const struct { float r; float g; float b; } whitepoints[] = {
 
 void saveTemp(int temp) {
   char filePath[100] = "";
-  sprintf(filePath, "%s%s", getenv("HOME"), "/.sct-temp");
+  sprintf(filePath, "%s%s", getenv("HOME"), "/.temp-sct");
 
   char strTemp[10];
   sprintf(strTemp, "%d", temp);
